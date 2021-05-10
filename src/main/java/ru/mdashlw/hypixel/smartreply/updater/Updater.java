@@ -78,7 +78,7 @@ public final class Updater {
     final String latestVersion = lines[0];
 
     final IChatComponent component = new ChatComponentText(
-        "§9----------------------- §6" + this.name + "§9-----------------------\n")
+        "§9----------------------- §6" + this.name + " §9-----------------------\n")
         .appendText("§fA new update is available: §cv" + this.currentVersion + " §f-> §av" + latestVersion + "§f.\n\n")
         .appendSibling(new ChatComponentText("§8>>> §bDownload Here §8<<<")
             .setChatStyle(new ChatStyle()
