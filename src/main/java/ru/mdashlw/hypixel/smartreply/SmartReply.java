@@ -24,11 +24,13 @@
 
 package ru.mdashlw.hypixel.smartreply;
 
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import ru.mdashlw.hypixel.smartreply.commands.RrCommand;
 import ru.mdashlw.hypixel.smartreply.listeners.ChatListener;
 import ru.mdashlw.hypixel.smartreply.listeners.GuiListener;
 import ru.mdashlw.hypixel.smartreply.listeners.ServerListener;
@@ -37,7 +39,7 @@ import ru.mdashlw.hypixel.smartreply.updater.Updater;
 @Mod(modid = "smartreply", name = "SmartReply", version = SmartReply.VERSION, clientSideOnly = true)
 public final class SmartReply {
 
-  public static final String VERSION = "1.0.1";
+  public static final String VERSION = "1.1.0";
 
   @Mod.Instance
   private static SmartReply INSTANCE;
@@ -51,12 +53,17 @@ public final class SmartReply {
   @EventHandler
   public void onPreInit(final FMLPreInitializationEvent event) {
     this.registerListeners();
+    this.registerCommands();
   }
 
   public void registerListeners() {
     MinecraftForge.EVENT_BUS.register(new ServerListener());
     MinecraftForge.EVENT_BUS.register(new ChatListener());
     MinecraftForge.EVENT_BUS.register(new GuiListener());
+  }
+
+  public void registerCommands() {
+    ClientCommandHandler.instance.registerCommand(new RrCommand());
   }
 
   @EventHandler

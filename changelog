@@ -1,3 +1,5 @@
+1.1.0
+- Added "/rr msg" command that simply sends /r to the server, in case you want to use Hypixel's /r.
 1.0.1
 - It now resets the last dm sender when leaving the server, allowing the use of /r on other servers.
 - Fixed updater.
