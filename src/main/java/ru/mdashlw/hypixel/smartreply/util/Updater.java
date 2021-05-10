@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ru.mdashlw.hypixel.smartreply.updater;
+package ru.mdashlw.hypixel.smartreply.util;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +36,6 @@ import net.minecraft.util.IChatComponent;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.mdashlw.hypixel.smartreply.util.OneTimeJoinMessage;
 
 public final class Updater {
 

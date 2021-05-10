@@ -34,7 +34,7 @@ import ru.mdashlw.hypixel.smartreply.commands.RrCommand;
 import ru.mdashlw.hypixel.smartreply.listeners.ChatListener;
 import ru.mdashlw.hypixel.smartreply.listeners.GuiListener;
 import ru.mdashlw.hypixel.smartreply.listeners.ServerListener;
-import ru.mdashlw.hypixel.smartreply.updater.Updater;
+import ru.mdashlw.hypixel.smartreply.util.Updater;
 
 @Mod(modid = "smartreply", name = "SmartReply", version = SmartReply.VERSION, clientSideOnly = true)
 public final class SmartReply {
