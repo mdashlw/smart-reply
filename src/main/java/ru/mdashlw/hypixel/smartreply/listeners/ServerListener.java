@@ -22,27 +22,16 @@
  * SOFTWARE.
  */
 
-package ru.mdashlw.enelix.util;
+package ru.mdashlw.hypixel.smartreply.listeners;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ChatComponentText;
-import org.apache.commons.lang3.StringUtils;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
+import ru.mdashlw.hypixel.smartreply.SmartReply;
 
-public final class ChatUtils {
+public final class ServerListener {
 
-  private ChatUtils() {
-  }
-
-  public static int getBreakDashCount() {
-    final Minecraft mc = Minecraft.getMinecraft();
-
-    return (int) Math.floor((280 * mc.gameSettings.chatWidth + 40) / 320 * (1 / mc.gameSettings.chatScale) * 53) - 3;
-  }
-
-  public static void printBreakLine() {
-    final int dashCount = getBreakDashCount();
-    final String dashes = StringUtils.repeat('-', dashCount);
-
-    Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("§9§m" + dashes));
+  @SubscribeEvent
+  public void onDisconnectedFromServer(final ClientDisconnectionFromServerEvent event) {
+    SmartReply.getInstance().setLastSender(null);
   }
 }

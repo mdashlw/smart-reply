@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package ru.mdashlw.smartreply.listeners;
+package ru.mdashlw.hypixel.smartreply.listeners;
 
 import java.util.Locale;
 import net.minecraft.client.gui.GuiChat;
@@ -30,15 +30,14 @@ import net.minecraft.client.gui.GuiPageButtonList.GuiResponder;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import ru.mdashlw.smartreply.SmartReply;
-import ru.mdashlw.smartreply.util.ReflectionUtils;
+import ru.mdashlw.hypixel.smartreply.SmartReply;
 
 public final class GuiListener {
 
   @SubscribeEvent
-  public void onInitGui(final GuiScreenEvent.InitGuiEvent.Post event) {
+  public void onPostInitGui(final GuiScreenEvent.InitGuiEvent.Post event) {
     if (event.gui instanceof GuiChat) {
-      final GuiTextField field = ReflectionUtils.getInputField((GuiChat) event.gui);
+      final GuiTextField field = ((GuiChat) event.gui).inputField;
 
       field.func_175207_a(new GuiChatModifier(field));
     }
@@ -65,7 +64,7 @@ public final class GuiListener {
       final String lowerText = text.toLowerCase(Locale.ENGLISH);
 
       if (lowerText.startsWith("/r ") || lowerText.startsWith("/к ")) {
-        final String lastSender = SmartReply.INSTANCE.getLastSender();
+        final String lastSender = SmartReply.getInstance().getLastSender();
 
         if (lastSender != null) {
           this.field.setText("/w " + lastSender + this.field.getText().substring(2));

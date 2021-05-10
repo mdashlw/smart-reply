@@ -22,31 +22,38 @@
  * SOFTWARE.
  */
 
-package ru.mdashlw.enelix.updater;
+package ru.mdashlw.hypixel.smartreply.listeners;
 
-public final class ModInfo {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import ru.mdashlw.hypixel.smartreply.SmartReply;
 
-  private final String name;
-  private final String author;
+public final class ChatListener {
 
-  public ModInfo(final String name, final String author) {
-    this.name = name;
-    this.author = author;
-  }
+  private static final Pattern DM_FROM_PATTERN = Pattern.compile("From (?:\\[[\\w\\s+]+] )?(\\w+):");
 
-  public String getName() {
-    return this.name;
-  }
+  @SubscribeEvent
+  public void onChatMessageReceived(final ClientChatReceivedEvent event) {
+    if (event.type != 0) {
+      return;
+    }
 
-  public String getAuthor() {
-    return this.author;
-  }
+    final String text = event.message.getUnformattedText();
 
-  @Override
-  public String toString() {
-    return "ModInfo{" +
-        "name='" + this.name + '\'' +
-        ", author='" + this.author + '\'' +
-        '}';
+    if (!text.startsWith("From ")) {
+      return;
+    }
+
+    final Matcher matcher = ChatListener.DM_FROM_PATTERN.matcher(text);
+
+    if (!matcher.find()) {
+      return;
+    }
+
+    final String name = matcher.group(1);
+
+    SmartReply.getInstance().setLastSender(name);
   }
 }

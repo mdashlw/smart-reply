@@ -1,2 +1,5 @@
+1.0.1
+- It now resets the last dm sender when leaving the server, allowing the use of /r on other servers.
+- Fixed updater.
 1.0.0
 - Initial release
